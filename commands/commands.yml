@@ -1,0 +1,9 @@
+wc:
+  class: 'WordCount::Executor'
+  options: 
+    'c': 'count_bytes'
+    'l': 'count_lines'
+    'w': 'count_words'
+    'm': 'count_chars'
+    'd': 'default'
+    'h': 'help'
