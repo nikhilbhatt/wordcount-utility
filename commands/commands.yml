@@ -1,9 +1,21 @@
 wc:
   class: 'WordCount::Executor'
-  options: 
-    'c': 'count_bytes'
-    'l': 'count_lines'
-    'w': 'count_words'
-    'm': 'count_chars'
-    'd': 'default'
-    'h': 'help'
+  options:
+    'c':
+      method: 'count_bytes'
+      help: 'help'
+    'l':
+      method: 'count_lines'
+      description: 'Count no. of lines'
+    'w':
+      method: 'count_words'
+      description: 'Count no. of words'
+    'm':
+      method: 'count_chars'
+      description: 'Count no. of characters'
+    'd':
+      method: 'default'
+      description: 'Execute all commands'
+    'h':
+      method: 'help'
+      description: 'List help menu'

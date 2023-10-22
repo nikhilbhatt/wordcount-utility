@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 require_relative './operator'
+require_relative './parser'
 
 module Commands
   module WordCount
-    # To Execute different subcommands
+    # Execute different subcommands
     class Executor
       def initialize(args: nil, stdin: nil, options: nil)
         @args = args
@@ -12,14 +13,31 @@ module Commands
       end
 
       def execute
-        sa = WordCount::SimplifyArgs.new(@args, @stdin)
-        @filepath = sa.filepath
+        parser = Parser.new(@args, @stdin)
+        content = read_content(parser)
+        option = @options[parser.option]
+        method = extract_method(option)
 
-        file_content = @filepath.nil? ? sa.stdin_content : FileOperator::Processor.new(@filepath).read_file
+        puts Operator.new(content).send(method)
+        puts "\nWordCount : #{extract_description(option)} #{parser.filepath}"
+      end
 
-        method_name = @options[sa.option[1]].to_s
+      private
 
-        puts Operator.new(file_content).send(method_name)
+      def read_content(parser)
+        if parser.filepath.nil?
+          parser.stdin_content
+        else
+          FileOperator::Processor.new(parser.filepath).read_file
+        end
+      end
+
+      def extract_method(option)
+        option.nil? ? '' : option['method']
+      end
+
+      def extract_description(option)
+        option.nil? ? 'Invalid' : option['description']
       end
     end
   end
