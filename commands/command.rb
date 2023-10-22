@@ -2,7 +2,6 @@
 
 require_relative 'config'
 require_relative 'word_count/executor'
-require_relative 'word_count/simplify_args'
 require_relative '../file_operator/processor'
 
 module Commands

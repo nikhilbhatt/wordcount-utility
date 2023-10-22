@@ -36,7 +36,7 @@ git clone https://github.com/nikhilbhatt/wordcount-utility.git
 3. Navigate to the directory where the WordCount utility is located using your terminal and run this command
 
 ```
-cp word_count.rb /usr/local/bin/word-count
+ln -s run.rb /usr/local/bin/word-count
 chmod +x /usr/local/bin/word-count
 ```
 
